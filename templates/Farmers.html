@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard - Agri Link</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white bg-opacity-80 p-6 text-center shadow-md">
+        <h1 class="text-3xl font-bold text-blue-600">Farmer Dashboard</h1>
+        <nav class="mt-4">
+            <a href="{{ url_for('mybookings') }}" class="text-blue-600 hover:underline mr-4">My Bookings</a>
+            <a href="{{ url_for('logout') }}" class="text-red-600 hover:underline">Logout</a>
+        </nav>
+    </header>
+
+    <!-- Message -->
+    {% if data %}
+        <div class="bg-green-100 text-green-800 p-2 my-4 text-center rounded" role="alert">{{ data }}</div>
+    {% endif %}
+
+    <!-- Worker List -->
+    <main class="p-6">
+        <h2 class="text-xl font-semibold mb-4">Available Workers</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for worker in workers %}
+                <div class="bg-white p-4 rounded shadow-md">
+                    <h3 class="font-bold text-lg">{{ worker.User_name }}</h3>
+                    <p><strong>Work Type:</strong> {{ worker.Work_Type }}</p>
+                    <p><strong>Village:</strong> {{ worker.Village_Name }}</p>
+                    <p><strong>Mobile:</strong> {{ worker.Mobile_Number }}</p>
+                    <a href="{{ url_for('book_worker', id=worker._id) }}" class="mt-2 inline-block bg-blue-600 text-white p-2 rounded hover:bg-blue-700 w-full text-center">Book Worker</a>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+</body>
+</html>

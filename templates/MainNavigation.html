@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriLink</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('{{ url_for("static", filename="images/picture_1.jpg") }}');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="font-sans bg-cover bg-center min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white bg-opacity-75 p-6 text-center rounded-lg shadow-md">
+        <h1 class="text-4xl font-extrabold text-blue-600 animate-pulse">AgriLink-Farmer Worker Collabaration Platform</h1>
+        <div class="mt-4 flex justify-center space-x-4">
+            <input type="text" placeholder="Search..." class="p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white bg-opacity-75 p-4 rounded-lg shadow-md mt-6">
+        <div class="relative inline-block">
+            <button onclick="toggleDropdown('menuDropdown')" class="text-black font-medium flex items-center space-x-2 focus:outline-none">
+                <i class="fas fa-bars"></i>
+                <span>MENU</span>
+                <i class="fas fa-caret-down"></i>
+            </button>
+            <ul id="menuDropdown" class="hidden absolute mt-2 bg-white shadow-lg rounded-lg border border-gray-300 w-40">
+                <li class="p-2 hover:bg-gray-100">
+                    <a href="{{ url_for('loginpage') }}" class="text-black hover:text-blue-600">Login</a>
+                </li>
+                <li class="p-2 hover:bg-gray-100">
+                    <a href="{{ url_for('registration') }}" class="text-black hover:text-blue-600">Register</a>
+                </li>
+                <li class="p-2 hover:bg-gray-100">
+                    <a href="{{ url_for('feedback') }}" class="text-black hover:text-blue-600">Feedback</a>
+                </li>
+                <li class="p-2 hover:bg-gray-100">
+                    <a href="{{ url_for('farmer_dashboard') }}" class="text-black hover:text-blue-600">Farmers</a>
+                </li>
+                <li class="p-2 hover:bg-gray-100">
+                    <a href="{{ url_for('worker_dashboard') }}" class="text-black hover:text-blue-600">Workers</a>
+                </li>
+                <li class="p-2 hover:bg-gray-100">
+                    <a href="{{ url_for('book_worker') }}" class="text-black hover:text-blue-600">Bookings</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Close dropdown if clicked outside
+        window.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('menuDropdown');
+            if (!e.target.closest('.relative')) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
+
+</body>
+</html>
