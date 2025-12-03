@@ -81,4 +81,5 @@ The platform allows:
 | Tools Used    | VS Code, XAMPP/MySQL Workbench |
 
 ---
+Visit http://127.0.0.1:5000
 
